@@ -128,7 +128,14 @@ getCharacters(page.value, count.value);
 
 const nextPage = (current_page) => {
   console.log(current_page)
-  getCharacters(current_page, count);
+  let filter = '';
+  if (name.value.length > 0) {
+    filter = `&name=${name.value}`;
+  }
+  if (status.value.length > 0) {
+    filter = `${filter}&status=${status.value}`
+  }
+  getCharacters(current_page, count, filter);
 }
 
 const resetFilter = () => {
@@ -145,7 +152,7 @@ const search = () => {
   if (status.value.length > 0) {
     filter = `${filter}&status=${status.value}`
   }
-  getCharacters(page.value, count.value, filter);
+  getCharacters(null, count.value, filter);
 }
 
 
